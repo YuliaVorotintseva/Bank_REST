@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-admin-user
+      author: vorotintseva_yulia
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: username
+                  value: "admin"
+              - column:
+                  name: email
+                  value: "admin@gmail.com"
+              - column:
+                  name: password
+                  value: "$2a$10$xVCH4IA5wG42AqV7On6ZP.ZyT7B1ex7ZPbzPtZ7JzQ.9QKz8YdWLu" # bcrypt("admin123")
+        - sql:
+            sql: INSERT INTO user_roles (user_id, role_id) VALUES ((SELECT id FROM users WHERE username = 'admin'), (SELECT id FROM roles WHERE name = 'ADMIN'))

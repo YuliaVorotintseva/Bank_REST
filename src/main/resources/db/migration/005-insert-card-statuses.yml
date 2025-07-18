@@ -1,0 +1,32 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-card-statuses
+      author: vorotintseva_yulia
+      changes:
+        - insert:
+            tableName: card_statuses
+            columns:
+              - column:
+                  name: status
+                  value: ACTIVE
+              - column:
+                  name: description
+                  value: Активна
+        - insert:
+            tableName: card_statuses
+            columns:
+              - column:
+                  name: status
+                  value: BLOCKED
+              - column:
+                  name: description
+                  value: Заблокирована
+        - insert:
+            tableName: card_statuses
+            columns:
+              - column:
+                  name: status
+                  value: EXPIRED
+              - column:
+                  name: description
+                  value: Истек срок

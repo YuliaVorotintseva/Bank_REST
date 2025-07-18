@@ -16,7 +16,7 @@ spring:
   security:
     user:
       name: admin
-      password: admin_password
+      password: admin123
       roles: ADMIN
 jwt:
   header: Authorization
@@ -33,6 +33,12 @@ springdoc:
     path: /swagger-ui.html
     persist-authorization: true
   api-docs:
-    path: /v3/api-docs
+    groups:
+      admin:
+        display-name: Admin API
+        paths-to-match: /api/admin/**
+      user:
+        display-name: User API
+        paths-to-match: /api/user/**
   jwt:
     enabled: true
