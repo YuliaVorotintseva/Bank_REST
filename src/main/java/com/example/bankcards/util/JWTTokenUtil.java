@@ -1,4 +1,4 @@
-package com.example.bankcards.security;
+package com.example.bankcards.util;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -16,7 +16,7 @@ import java.util.function.Function;
 /**
  * Implements service for creating and processing with JWT tokens
  */
-public class JWTTokenService {
+public class JWTTokenUtil {
     private final Key secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS256);
     private final Long accessTokenExpiration = 3600000L;
     private final Long refreshTokenExpiration = 5184000000L;
