@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
 import org.hibernate.annotations.ColumnTransformer;
-import java.time.LocalDate;
 
 @Entity
 @Table(name = "cards")
@@ -33,7 +32,7 @@ public class Card {
 
     @Future(message = "Срок действия должен быть в будущем")
     @Column(name = "expiry_date", nullable = false)
-    private LocalDate expiryDate;
+    private String expiryDate;
 
     @DecimalMin(value = "0.0", message = "Баланс не может быть отрицательным")
     @Column(nullable = false)
@@ -71,5 +70,61 @@ public class Card {
         public String getDisplayName() {
             return displayName;
         }
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setCardNumber(String cardNumber) {
+        this.cardNumber = cardNumber;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
+    public void setExpiryDate(String expiryDate) {
+        this.expiryDate = expiryDate;
+    }
+
+    public void setBalance(Double balance) {
+        this.balance = balance;
+    }
+
+    public void setStatus(CardStatus status) {
+        this.status = status;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getCardNumber() {
+        return cardNumber;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public String getExpiryDate() {
+        return expiryDate;
+    }
+
+    public Double getBalance() {
+        return balance;
+    }
+
+    public CardStatus getStatus() {
+        return status;
+    }
+
+    public User getUser() {
+        return user;
     }
 }

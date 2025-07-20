@@ -9,10 +9,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -44,6 +42,10 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String password;
 
+    @NotBlank(message = "IsEnabled cannot be blank")
+    @Column(nullable = false)
+    private Boolean isEnabled;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_roles",
@@ -52,8 +54,16 @@ public class User implements UserDetails {
     )
     private final Set<Role> roles = new HashSet<>();
 
+    public void setEnabled(Boolean enabled) {
+        isEnabled = enabled;
+    }
+
+    public void addAuthority(final Role role) {
+        roles.add(role);
+    }
+
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
+    public Set<Role> getAuthorities() {
         return roles;
     }
 
@@ -65,6 +75,14 @@ public class User implements UserDetails {
     @Override
     public String getUsername() {
         return username;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     @Override
@@ -84,6 +102,6 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return isEnabled;
     }
 }
