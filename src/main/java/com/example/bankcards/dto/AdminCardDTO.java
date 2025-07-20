@@ -2,7 +2,6 @@ package com.example.bankcards.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
-import java.time.LocalDate;
 
 @Data
 @Schema(description = "Административное представление карты")
@@ -17,7 +16,7 @@ public class AdminCardDTO {
     private String ownerName;
 
     @Schema(description = "Срок действия", example = "2025-12-31")
-    private LocalDate expiryDate;
+    private String expiryDate;
 
     @Schema(description = "Баланс", example = "1000.00")
     private Double balance;
@@ -27,4 +26,32 @@ public class AdminCardDTO {
 
     @Schema(description = "ID владельца", example = "5")
     private Long userId;
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setFullNumber(String fullNumber) {
+        this.fullNumber = fullNumber;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
+    public void setExpiryDate(String expiryDate) {
+        this.expiryDate = expiryDate;
+    }
+
+    public void setBalance(Double balance) {
+        this.balance = balance;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 }

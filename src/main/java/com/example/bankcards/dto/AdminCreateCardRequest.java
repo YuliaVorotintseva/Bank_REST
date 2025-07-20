@@ -29,4 +29,24 @@ public class AdminCreateCardRequest {
     @Schema(description = "Начальный баланс", example = "0.00")
     @DecimalMin("0.00")
     private Double initialBalance;
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public String getCardNumber() {
+        return cardNumber;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public String getExpiryDate() {
+        return expiryDate;
+    }
+
+    public Double getInitialBalance() {
+        return initialBalance;
+    }
 }
