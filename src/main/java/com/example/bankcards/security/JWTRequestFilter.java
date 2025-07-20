@@ -1,5 +1,6 @@
 package com.example.bankcards.security;
 
+import com.example.bankcards.util.JWTTokenUtil;
 import io.jsonwebtoken.JwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -18,7 +19,7 @@ import java.io.IOException;
  * Implements custom request filter
  */
 public class JWTRequestFilter extends OncePerRequestFilter {
-    private final JWTTokenService jwtTokenUtil;
+    private final JWTTokenUtil jwtTokenUtil;
     private final UserDetailsService userDetailsService;
 
     /**
@@ -27,7 +28,7 @@ public class JWTRequestFilter extends OncePerRequestFilter {
      * @param jwtTokenUtil       - service for creating and processing JT tokens
      * @param userDetailsService - custom user details service
      */
-    public JWTRequestFilter(final JWTTokenService jwtTokenUtil,
+    public JWTRequestFilter(final JWTTokenUtil jwtTokenUtil,
                             final UserDetailsService userDetailsService) {
         this.jwtTokenUtil = jwtTokenUtil;
         this.userDetailsService = userDetailsService;
