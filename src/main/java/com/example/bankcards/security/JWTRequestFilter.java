@@ -14,6 +14,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import org.springframework.lang.NonNull;
 
 /**
  * Implements custom request filter
@@ -35,14 +36,17 @@ public class JWTRequestFilter extends OncePerRequestFilter {
     }
 
     @Override
-    protected boolean shouldNotFilter(final HttpServletRequest request) {
+    protected boolean shouldNotFilter(@NonNull final HttpServletRequest request) {
         String path = request.getRequestURI();
         return path.endsWith("/signup") || path.endsWith("/signin") || path.endsWith("/rules");
     }
 
     @Override
-    protected void doFilterInternal(final HttpServletRequest request, final HttpServletResponse response,
-                                    final FilterChain chain) throws ServletException, IOException {
+    protected void doFilterInternal(
+        @NonNull final HttpServletRequest request,
+        @NonNull final HttpServletResponse response,
+        @NonNull final FilterChain chain
+        ) throws ServletException, IOException {
         final String authorizationHeader = request.getHeader("Authorization");
         final int startIndex = 7;
 

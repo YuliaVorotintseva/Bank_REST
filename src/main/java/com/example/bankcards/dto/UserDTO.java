@@ -7,7 +7,7 @@ import java.util.Set;
 
 @Data
 @Schema(description = "Административное представление пользователя")
-public class AdminUserDTO {
+public class UserDTO {
     @Schema(description = "ID пользователя", example = "1")
     private Long id;
 

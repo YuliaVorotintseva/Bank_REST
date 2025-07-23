@@ -2,12 +2,9 @@ package com.example.bankcards.util;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.security.Keys;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.crypto.SecretKey;
-import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,7 +14,7 @@ import java.util.function.Function;
  * Implements service for creating and processing with JWT tokens
  */
 public class JWTTokenUtil {
-    private final Key secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+    private final SecretKey secretKey = io.jsonwebtoken.Jwts.SIG.HS256.key().build();
     private final Long accessTokenExpiration = 3600000L;
     private final Long refreshTokenExpiration = 5184000000L;
 
@@ -36,7 +33,7 @@ public class JWTTokenUtil {
                 .subject(userDetails.getUsername())
                 .issuedAt(new Date())
                 .expiration(new Date(System.currentTimeMillis() + accessTokenExpiration))
-                .signWith(secretKey, SignatureAlgorithm.HS256)
+                .signWith(secretKey)
                 .compact();
     }
 
@@ -51,7 +48,7 @@ public class JWTTokenUtil {
                 .subject(userDetails.getUsername())
                 .issuedAt(new Date())
                 .expiration(new Date(System.currentTimeMillis() + refreshTokenExpiration))
-                .signWith(secretKey, SignatureAlgorithm.HS256)
+                .signWith(secretKey)
                 .compact();
     }
 

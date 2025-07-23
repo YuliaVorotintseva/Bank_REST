@@ -1,22 +1,19 @@
 package com.example.bankcards.util;
 
-import com.example.bankcards.dto.AdminCardDTO;
 import com.example.bankcards.dto.AdminCreateCardRequest;
+import com.example.bankcards.dto.CardDTO;
 import com.example.bankcards.entity.Card;
 import com.example.bankcards.entity.User;
 
-import java.time.LocalDate;
-
 public class CardMapper {
-    public AdminCardDTO toDTO(final Card card) {
-        AdminCardDTO dto = new AdminCardDTO();
+    public CardDTO toCardDTO(final Card card) {
+        CardDTO dto = new CardDTO();
         dto.setId(card.getId());
-        dto.setFullNumber("**** **** **** " + card.getCardNumber().substring(12));
         dto.setOwnerName(card.getOwnerName());
-        dto.setExpiryDate(card.getExpiryDate());
-        dto.setBalance(card.getBalance());
+        dto.setMaskedNumber("**** **** **** " + card.getCardNumber().substring(12));
         dto.setStatus(card.getStatus().getDisplayName());
-        dto.setUserId(card.getUser().getId());
+        dto.setBalance(card.getBalance());
+        dto.setExpiryDate(card.getExpiryDate());
         return dto;
     }
 

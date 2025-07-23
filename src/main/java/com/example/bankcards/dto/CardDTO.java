@@ -22,4 +22,28 @@ public class CardDTO {
 
     @Schema(description = "Статус карты", example = "ACTIVE", allowableValues = {"ACTIVE", "BLOCKED", "EXPIRED"})
     private String status;
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setMaskedNumber(String maskedNumber) {
+        this.maskedNumber = maskedNumber;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
+    public void setExpiryDate(String expiryDate) {
+        this.expiryDate = expiryDate;
+    }
+
+    public void setBalance(Double balance) {
+        this.balance = balance;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

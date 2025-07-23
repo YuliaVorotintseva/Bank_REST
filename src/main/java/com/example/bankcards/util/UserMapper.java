@@ -1,11 +1,11 @@
 package com.example.bankcards.util;
 
-import com.example.bankcards.dto.AdminUserDTO;
+import com.example.bankcards.dto.UserDTO;
 import com.example.bankcards.entity.User;
 
 public class UserMapper {
-    public AdminUserDTO toDTO(final User user) {
-        AdminUserDTO dto = new AdminUserDTO();
+    public UserDTO toDTO(final User user) {
+        UserDTO dto = new UserDTO();
         dto.setId(user.getId());
         dto.setUsername(user.getUsername());
         dto.setEmail(user.getEmail());
